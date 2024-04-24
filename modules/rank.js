@@ -127,7 +127,7 @@ async function rankClockwork(client) {
     }
     active.clear();
   } catch (error) {
-    u.errorHandler(error, "Rank inner clockwork");
+    // u.errorHandler(error, "Rank inner clockwork");
   }
 }
 

@@ -5,6 +5,16 @@ const gotobed = new u.sub()
   .setName("gotobed")
   .setDescription("[ADMIN] Restarts the bot.");
 
+const transcribeYoutube = new u.sub()
+  .setName("transcribe")
+  .setDescription("Transcribes youtube video")
+  .addStringOption(
+    new u.string()
+      .setName("link")
+      .setDescription("Link to youtube video")
+      .setRequired(true)
+  );
+
 const ping = new u.sub()
   .setName("ping")
   .setDescription("Gets the current total ping time for the bot.");
@@ -59,6 +69,7 @@ module.exports = new u.cmd()
   .addSubcommand(pulse)
   .addSubcommand(reload)
   .addSubcommand(getid)
+  .addSubcommand(transcribeYoutube)
   .setDMPermission(false)
   .setDefaultMemberPermissions(0)
   .toJSON();

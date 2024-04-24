@@ -5,7 +5,8 @@ const Augur = require("augurbot-ts"),
   Discord = require("discord.js"),
   config = require("../config/config.json"),
   p = require("../utils/perms"),
-  u = require("../utils/utils");
+  u = require("../utils/utils"),
+  deepgramUtil = require("../utils/deepgramUtil");
 
 /**
  * function fieldMismatches
@@ -173,6 +174,13 @@ const Module = new Augur.Module()
     if (!config.mcTestingWebhook) return msg.reply("Make sure to set a webhook for mcTestingWebhook! You need it to run this command.");
     const webhook = new Discord.WebhookClient({ url: config.mcTestingWebhook });
     webhook.send(suffix);
+  }
+})
+.addCommand({ name: "transcribe",
+  permissions: () => config.devMode,
+  process: async (msg, suffix) => {
+    await deepgramUtil.transcribe(suffix);
+    u.errorLog.send(`Transcribing <${suffix}>`);
   }
 })
 .addEvent("interactionCreate", (int) => {
